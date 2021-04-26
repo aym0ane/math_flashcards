@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+<center>
+{% if my_answer  %}
+<div class="alert alert-{{ color }} alert-dismissible fade show" role="alert">
+
+  {{ my_answer }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<h1> <img src="static/img/{{num_1}}.PNG"> +  <img src="static/img/{{num_2}}.PNG"> </h1>
+
+<br/>
+<form action="{% url 'add' %}" method="POST">
+	{% csrf_token %}
+  <div class="forum-group">
+    <input type="text" class="form-control" placeholder="TYPE YOUR ANSWER HERE" name="answer"  > 
+    <input type="hidden"  name="old_num_1"  value="{{num_1}}" > 
+    <input type="hidden" name="old_num_2"  value="{{num_2}}" > 
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</center>
+{% endblock %}
